@@ -4,6 +4,7 @@ import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useCreateOrderMutation } from "../services/appApi";
+const burl="https://karchisoftservbackend.onrender.com"
 
 function CheckoutForm() {
     const stripe = useStripe();
@@ -20,7 +21,7 @@ function CheckoutForm() {
         e.preventDefault();
         if (!stripe || !elements || user.cart.count <= 0) return;
         setPaying(true);
-        const { client_secret } = await fetch("http://localhost:8080/create-payment", {
+        const { client_secret } = await fetch("{burl}/create-payment", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
